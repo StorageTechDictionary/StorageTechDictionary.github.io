@@ -1,6 +1,5 @@
 // noinspection JSCheckFunctionSignatures,JSUnresolvedVariable
 
-let data = {};
 const value_list = {};
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -56,14 +55,7 @@ function load_data(filename) {
             'success': function (d) {
                 config = d;
             }
-        }),
-        $.ajax({
-            'url': 'data/data.json',
-            'dataType': "json",
-            'success': function (d) {
-                data = d;
-            }
-        }),
+        })
     ).done(function(){
         display_headers_and_table();
     });
@@ -80,6 +72,7 @@ function initialize_page() {
 
     if(typeof settings_obj.search_in_term === 'undefined') {
         settings_obj.search_in_term = "true";
+        settings_obj.search_in_aka = "true";
     }
 
     $('.btn.radio-settings, .btn.toggle-settings').each(function () {
@@ -140,7 +133,7 @@ function display_headers_and_table() {
     );
 
     // Table headers
-    $('#output_table').children('thead').children('tr').append(`
+    $('#output_table').children('thead').children('tr').append(/*html*/`
     <th>
         <div class="dropdown">
             <a class="table-header dropdown-toggle justify-start" data-toggle="dropdown">
@@ -148,12 +141,12 @@ function display_headers_and_table() {
                 </span>)</span>
                 <span class="icons">
                     <i class="fas fa-sort-amount-down-alt${
-                        sort_arr.some(e => e.property === term) && !sort_arr.filter(e => e.property === term)[0].reversed 
+                        sort_arr.some(e => e.property === 'term') && !sort_arr.filter(e => e.property === 'term')[0].reversed 
                             ? '' 
                             : ' display-none'
                         } sorted"></i>
                     <i class="fas fa-sort-amount-up${
-                        sort_arr.some(e => e.property === term) && sort_arr.filter(e => e.property === term)[0].reversed 
+                        sort_arr.some(e => e.property === 'term') && sort_arr.filter(e => e.property === 'term')[0].reversed 
                             ? '' 
                             : ' display-none'
                     } sorted-reverse"></i>
@@ -166,20 +159,20 @@ function display_headers_and_table() {
                     <div class="text-center">
                         <span class="btn-group dropdown-actions" role="group">
                             <a role="button" class="btn dropdown-btn btn-default modify-sorting${
-                                (sort_arr.some(e => e.property === term) 
-                                    && !sort_arr.filter(e => e.property === term)[0].reversed) 
+                                (sort_arr.some(e => e.property === 'term') 
+                                    && !sort_arr.filter(e => e.property === 'term')[0].reversed) 
                                     ? ' active' 
                                     : ''
-                                }" property="${term}" reversed="false"
+                                }" property="term" reversed="false"
                             >
                                 <i class="fas fa-sort-amount-down-alt"></i>
                             </a>
                             <a role="button" class="btn dropdown-btn btn-default modify-sorting${
-                                (sort_arr.some(e => e.property === term) 
-                                    && sort_arr.filter(e => e.property === term)[0].reversed) 
+                                (sort_arr.some(e => e.property === 'term') 
+                                    && sort_arr.filter(e => e.property === 'term')[0].reversed) 
                                     ? ' active' 
                                     : ''
-                                }" property="${term}" reversed="true"
+                                }" property="term" reversed="true"
                             >
                                 <i class="fas fa-sort-amount-up"></i>
                             </a>
@@ -557,7 +550,7 @@ function display_results() {
         for (let i = 0; i < split_data.length - 1; i++) {
             let this_elm = split_data[i];
             let next_elm = split_data[i + 1];
-            if(this_elm[term] === next_elm[term]) {
+            if(this_elm.term === next_elm.term) {
                 Object.entries(this_elm).forEach(([property_id, this_value]) => {
                     let next_value = next_elm[property_id];
                     this_elm[property_id] = combine_elements(this_value, next_value);
@@ -706,8 +699,8 @@ function formatting_color(value, header_name, class_exists = false) {
     let color = "";
 
     let found_key;
-    if (found_key = Object.keys(data.conditional_formatting).find(key_regex => new RegExp(`^${key_regex}$`).test(value))) {
-        color = data.conditional_formatting[found_key];
+    if (found_key = Object.keys(config.conditional_formatting ?? {}).find(key_regex => new RegExp(`^${key_regex}$`).test(value))) {
+        color = config.conditional_formatting[found_key];
         if (!class_exists) {
             color = `class="${color}"`;
         }
@@ -883,11 +876,12 @@ function isNum(val){
 
 function highlightSearchString(input, search) {
     if(Array.isArray(input)) {
-        return input.map(v => highlightSearchString(input, search));
+        return input.map(v => highlightSearchString(v, search));
     }
+    if(typeof input === 'undefined') return undefined;
     search.split(' ')
         .filter(e => e !== '')
-        .every(search_term => {
+        .forEach(search_term => {
             input = input.replace(new RegExp(search_term, "ig"), '{$&}');
         });
     input = input.replace(/{/g, '<span class="search-highlight">').replace(/}/g, '</span>');

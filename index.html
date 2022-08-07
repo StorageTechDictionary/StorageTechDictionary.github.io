@@ -97,7 +97,7 @@
                 <li role="separator" class="horizontal-divider visible-xs"></li>
                 <li><a class="navbar-item" href="https://discord.gg/RUEVmTahYg"><i class="fab fa-discord"></i></a></li>
                 <li role="separator" class="vertical-divider hidden-xs"></li>
-                <li><a class="navbar-item" href="https://github.com/JoakimThorsen/MCPropertyEncyclopedia"><i class="fab fa-github"></i></a></li>
+                <li><a class="navbar-item" href="https://github.com/JoakimThorsen/StorageTechDictionary"><i class="fab fa-github"></i></a></li>
                 <li role="separator" class="vertical-divider hidden-xs"></li>
                 <li><a class="navbar-item" href="about.html">About</a></li>
             </ul>
@@ -108,17 +108,7 @@
 <div class="container text-center" id="main-body">
     <div class="col-md-1 col-lg-3"></div>
     <div class="col-md-10 col-lg-6">
-        <h1 class="text-center" style="font-size: 40px;">Minecraft Block Property Encyclopedia</h1>
-        <div class="panel panel-default collapse in display-none shameless-self-promo" style="width:fit-content; margin:auto">
-            <div class="panel-heading" style="font-size: 20px; width: 100%;"><i class="fab fa-discord"></i> Heads Up! <i
-                    class="fab fa-discord"
-            ></i> <a role="button" style="float:right; color:gray" onclick="$(this).parent().parent().collapse('hide'); stopPromo();"
-            >X</a></div>
-            <div class="panel-body" style="font-size: 16px;">
-                This project now has a dedicated discord server! Head over to <a href="https://discord.gg/RUEVmTahYg">https://discord.gg/RUEVmTahYg</a>
-                :)
-            </div>
-        </div>
+        <h1 class="text-center" style="font-size: 40px;">The Minecraft Storage Tech Dictionary</h1>
         <h2 style="font-size: 24px;">This is an open source project. View the <a href="about.html">about</a> page for
             more info.<br>Click the button below to customize your selection:</h2>
     </div>
@@ -132,12 +122,6 @@
 
                 <div class="settings-box">
                     <p>Reset:</p>
-                    <button class="btn btn-default"
-                            type="button"
-                            onclick="selection_arr = null; update_window_history(); display_selection(); display_headers_and_table();"
-                    >
-                        Property Selection
-                    </button>
                     <button class="btn btn-default"
                             type="button"
                             onclick="filter_obj = {}; update_window_history(); display_headers_and_table();"
@@ -210,9 +194,10 @@
                    autocomplete="off"
             >
         </div>
-        <input type="checkbox" class="toggle-settings" setting="search_in_term" id="search_in_term"></intput><label class="input-label" style="font-weight: normal;" for="search_in_term">Term</label>
-        <input type="checkbox" class="toggle-settings" setting="search_in_aka" id="search_in_aka"></intput><label class="input-label" style="font-weight: normal;" for="search_in_aka">aka</label>
-        <input type="checkbox" class="toggle-settings" setting="search_in_description" id="search_in_description"></intput><label class="input-label" style="font-weight: normal;" for="search_in_description">Description</label><br>
+        <p class="input-label">Search in: </p>
+        <input type="checkbox" class="toggle-settings" setting="search_in_term" id="search_in_term"></intput><label class="input-label" for="search_in_term">Term</label>
+        <input type="checkbox" class="toggle-settings" setting="search_in_aka" id="search_in_aka"></intput><label class="input-label" for="search_in_aka">aka</label>
+        <input type="checkbox" class="toggle-settings" setting="search_in_description" id="search_in_description"></intput><label class="input-label" for="search_in_description">Description</label><br>
         <div class="results">
             <table class="table table-bordered table-hover text-left" id="output_table">
                 <thead>
