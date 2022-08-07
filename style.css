@@ -1,0 +1,549 @@
+body {
+    /* padding-bottom: 70px; */
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("assets/blockpropertythingy_255kb.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+    overflow-x: auto;
+}
+
+#about-body {
+    background-color: rgba(255, 255, 255, 0.856);
+    padding: 10px 5px 5px 5px;
+    margin: 5px;
+}
+
+.navbar {
+    background: transparent;
+    border-color: transparent;
+    margin-bottom: 0;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+}
+
+.navbar-nav > li > a.navbar-item {
+    color: white;
+    text-shadow: 1px 1px 5px black;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.navbar-nav > li > a.navbar-disabled {
+    color: #a8a8a8;
+}
+
+.navbar-nav > li > a.navbar-item:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.navbar-nav > li > a.navbar-item.navbar-disabled:hover {
+    color: #a8a8a8;
+}
+
+.vertical-divider {
+    height: 40px;
+    width: 2px;
+    margin: 5px 9px;
+    background-color: white;
+    box-shadow: 1px 1px 5px black;
+}
+
+.horizontal-divider, hr {
+    height: 1px;
+    /* margin: 9px 0; */
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 0 5px black, 1px 1px 2px black;
+}
+
+
+h1, h2, h3 {
+    color: white;
+    text-shadow: 0 0 5px black, 2px 2px 3px black;
+}
+
+:is(h1, h2, h3).black-text {
+    color: black;
+    text-shadow: none;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3, .about-text, .written-list {
+    font-size: 24px;
+}
+
+a {
+    color: #2f90e6;
+}
+
+a:hover {
+    color: #05447c;
+}
+
+.select-option, .selection-category {
+    font-size: 14px;
+    padding: 6px 16px !important;
+    margin: 0;
+}
+
+.dropdown-actions {
+    padding: 0 0 5px;
+}
+
+.selected {
+    background-color: #B7E1CD;
+}
+
+.selected:hover {
+    background-color: #AED6C3 !important;
+}
+
+#search {
+    margin: 6px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    #search {
+        width: 400px;
+    }
+}
+
+.input-label {
+    font-weight: normal;
+    color: white;
+}
+
+.col-sm-12, .container-fluid {
+    padding: 0;
+}
+
+.results {
+    max-width: fit-content;
+    margin: auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    /* overflow-x: auto; */
+    height: 100%;
+    flex-grow: 1;
+}
+
+#output_table {
+    width: fit-content;
+    align-items: center;
+    margin-bottom: 0;
+    background-color: white;
+    filter: drop-shadow(0px 0px 4px gray);
+}
+
+#output_table > * > * > td, .table.nested-table > * > * > td {
+    padding: 4px 6px;
+}
+
+li {
+    list-style-position: inside;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: black;
+    margin: 0 auto;
+    padding: 6px 8px;
+    height: 100%;
+    /* cursor: progress; */
+}
+a.table-header {
+    cursor: pointer;
+}
+
+a.table-header:hover {
+    text-decoration: none;
+    color: #666;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.justify-start {
+    margin-right: auto;
+}
+
+.dropdown-scrollable {
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.dropdown-scrollable > li > a:focus, .dropdown-scrollable > li > a:hover {
+    color: #262626;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}
+
+.dropdown-scrollable > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+.dropdown-option {
+    display: flex !important;
+    justify-content: space-between;
+}
+
+.dropdown-option > .glyphicon-ok, .icons {
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.modify-filter {
+    padding: 3px 15px !important;
+}
+
+.dropdown-menu {
+    min-width: 21.1rem; /* To match with the width of buttons, this weird width is required */
+}
+
+.dropdown-menu > p {
+    line-height: 1.42857143;
+    font-weight: normal;
+    padding: 3px 15px;
+    margin: 0;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    min-width: 250px;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu,
+.dropdown-submenu.open > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu > li.dropdown-submenu.open > a {
+    background-color: #dbdbdb;
+}
+
+.dropdown-submenu > a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #aaa;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover > a:after {
+    border-left-color: #000;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+.custom-collapsible {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+}
+
+.custom-submenu > ul {
+    padding-left: 1.5rem;
+}
+
+.custom-submenu a {
+    color: #000;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}
+
+.custom-submenu a:hover {
+    text-decoration: none;
+    background: #f5f5f5;
+}
+
+.dot {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: -2px;
+    margin-right: 3px;
+}
+
+.sprite {
+    display: inline-block;
+    vertical-align: text-top;
+    height: 16px;
+    width: 16px;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+}
+
+.block-sprite {
+    background-image: url(assets/BlockCSS.png);
+}
+.block-sprite2 {
+    background-image: url(assets/BlockCSS2.png);
+}
+
+.entity-sprite {
+    background-image: url(assets/EntityCSS.png);
+}
+
+.item-sprite {
+    background-image: url(assets/ItemCSS.png);
+}
+
+.unicolor-block-sprite {
+    background-image: url(assets/UnicolorBlockCSS.png);
+}
+
+.search-highlight {
+    background-color: yellow;
+}
+
+.display-none {
+    display: none !important;
+}
+
+.icons {
+    align-self: center;
+}
+
+.table-bordered > tbody > tr > td,
+.table-bordered > thead > tr > th,
+.table-bordered {
+    border-color: #AAA;
+}
+
+th {
+    background-color: #f5f5f5;
+    border-bottom-width: 0 !important;
+    box-shadow: inset 0 -1px 0 #AAA;
+    padding: 2px 0 !important;
+    position: sticky;
+    top: -1px;
+    /* z-index: 2; */
+}
+
+/* Conditional formatting: */
+.cf-yes { background-color: #B7E1CD !important; }
+.cf-no { background-color: #F4C7C3 !important; }
+.cf-neutral { background-color: #FCE8B2 !important; }
+.cf-neutral-yes { background-color: #DDE6BA !important; }
+.cf-neutral-no { background-color: #F9D9B8 !important; }
+.cf-invalid { background-color: #CCC !important; }
+/* .cf-numeric { background-color: #D0EBFB;} */
+
+.CLEAR { background-color: rgb(0 0 0) }
+.PALE_GREEN { background-color: rgb(127 178 56) }
+.PALE_YELLOW { background-color: rgb(247 233 163) }
+.WHITE_GRAY { background-color: rgb(199 199 199) }
+.BRIGHT_RED { background-color: rgb(255 0 0) }
+.PALE_PURPLE { background-color: rgb(160 160 255) }
+.IRON_GRAY { background-color: rgb(167 167 167) }
+.DARK_GREEN { background-color: rgb(0 124 0) }
+.WHITE { background-color: rgb(255 255 255) }
+.LIGHT_BLUE_GRAY { background-color: rgb(164 168 184) }
+.DIRT_BROWN { background-color: rgb(151 109 77) }
+.STONE_GRAY { background-color: rgb(112 112 112) }
+.WATER_BLUE { background-color: rgb(64 64 255) }
+.OAK_TAN { background-color: rgb(143 119 72) }
+.OFF_WHITE { background-color: rgb(255 252 245) }
+.ORANGE { background-color: rgb(216 127 51) }
+.MAGENTA { background-color: rgb(178 76 216) }
+.LIGHT_BLUE { background-color: rgb(102 153 216) }
+.YELLOW { background-color: rgb(229 229 51) }
+.LIME { background-color: rgb(127 204 25) }
+.PINK { background-color: rgb(242 127 165) }
+.GRAY { background-color: rgb(76 76 76) }
+.LIGHT_GRAY { background-color: rgb(153 153 153) }
+.CYAN { background-color: rgb(76 127 153) }
+.PURPLE { background-color: rgb(127 63 178) }
+.BLUE { background-color: rgb(51 76 178) }
+.BROWN { background-color: rgb(102 76 51) }
+.GREEN { background-color: rgb(102 127 51) }
+.RED { background-color: rgb(153 51 51) }
+.BLACK { background-color: rgb(25 25 25) }
+.GOLD { background-color: rgb(250 238 77) }
+.DIAMOND_BLUE { background-color: rgb(92 219 213) }
+.LAPIS_BLUE { background-color: rgb(74 128 255) }
+.EMERALD_GREEN { background-color: rgb(0 217 58) }
+.SPRUCE_BROWN { background-color: rgb(129 86 49) }
+.DARK_RED { background-color: rgb(112 2 0) }
+.TERRACOTTA_WHITE { background-color: rgb(209 177 161) }
+.TERRACOTTA_ORANGE { background-color: rgb(159 82 36) }
+.TERRACOTTA_MAGENTA { background-color: rgb(149 87 108) }
+.TERRACOTTA_LIGHT_BLUE { background-color: rgb(112 108 138) }
+.TERRACOTTA_YELLOW { background-color: rgb(186 133 36) }
+.TERRACOTTA_LIME { background-color: rgb(103 117 53) }
+.TERRACOTTA_PINK { background-color: rgb(160 77 78) }
+.TERRACOTTA_GRAY { background-color: rgb(57 41 35) }
+.TERRACOTTA_LIGHT_GRAY { background-color: rgb(135 107 98) }
+.TERRACOTTA_CYAN { background-color: rgb(87 92 92) }
+.TERRACOTTA_PURPLE { background-color: rgb(122 73 88) }
+.TERRACOTTA_BLUE { background-color: rgb(76 62 92) }
+.TERRACOTTA_BROWN { background-color: rgb(76 50 35) }
+.TERRACOTTA_GREEN { background-color: rgb(76 82 42) }
+.TERRACOTTA_RED { background-color: rgb(142 60 46) }
+.TERRACOTTA_BLACK { background-color: rgb(37 22 16) }
+.DULL_RED { background-color: rgb(189 48 49) }
+.DULL_PINK { background-color: rgb(148 63 97) }
+.DARK_CRIMSON { background-color: rgb(92 25 29) }
+.TEAL { background-color: rgb(22 126 134) }
+.DARK_AQUA { background-color: rgb(58 142 140) }
+.DARK_DULL_PINK { background-color: rgb(86 44 62) }
+.BRIGHT_TEAL { background-color: rgb(20 180 133) }
+.DEEPSLATE_GRAY { background-color: rgb(100 100 100) }
+.RAW_IRON_PINK { background-color: rgb(216 175 147) }
+.LICHEN_GREEN { background-color: rgb(127 167 150) }
+
+
+.nested-table {
+    margin-bottom: 0;
+    width: 100%;
+    /* border-collapse: collapse;
+    border-style: hidden; */
+}
+
+.nested-cell {
+    height: auto;
+    padding: 0 !important;
+}
+
+td .nested-table {
+    width: 100%;
+    white-space: nowrap
+}
+
+.nested-table > tbody > tr > td:last-child {
+    width: 22px;
+    /* text-align: right; */
+    white-space: nowrap;
+}
+
+.expand-btn {
+    color: #333;
+    background-color: #A3D6FC;
+    border-color: #aaa;
+}
+
+.settings {
+    margin: 3px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.settings-box {
+    min-width: fit-content;
+    margin: 5px;
+    padding: 7px;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 4px black;
+    height: fit-content;
+}
+
+.settings-box > p {
+    color: black;
+    text-shadow: none;
+    font-size: 24px;
+}
+
+.settings-box > button, .settings-box > .btn-group, .settings-box > a {
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px rgba(47, 47, 47, 0.828);
+}
+
+#scrollButton {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    z-index: 99;
+    border: #bbb 1px solid;
+    background-color: white;
+    color: #777;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    font-size: 30px;
+    box-shadow: 1px 1px 4px rgba(47, 47, 47, 0.828);
+}
+
+#scrollButton:hover {
+    background-color: #ddd;
+}
+
+/* Scrollbar Deco */
+::-webkit-scrollbar {
+    width: 0.8em;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff; /* Dark mode: #000000 */
+
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a8a8a8; /*Dark mode: #5c5c5c */
+    border-radius: 90vw;
+    border: 2px solid #ffffff; /* Dark mode: #000000 */
+}
+
+html {
+    scroll-behavior: smooth;
+}
