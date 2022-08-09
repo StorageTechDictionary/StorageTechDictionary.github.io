@@ -395,19 +395,13 @@ function display_results() {
             function filter_element(input_element) {
                 if (typeof input_element == 'object') {
                     if (Array.isArray(input_element)) {
-                        const output_arr = [];
-
-                        input_element.forEach(element => {
-                            const value = filter_element(element);
-                            if (value !== undefined) {
-                                output_arr.push(value);
-                            }
-                        });
-                        if (output_arr.length === 0) {
-                            return;
+                        // shows all values as long as any of them are valid/not blacklisted
+                        if(input_element.some(element => filter_element(element) !== undefined)) {
+                            return input_element;
                         }
-                        return output_arr;
+                        return;
                     } else {
+                        // won't actually work the same way as ^, but is unused so it's fiiiine
                         const output_obj = {};
                         Object.keys(input_element).forEach(variant => {
                             const value = filter_element(input_element[variant]);

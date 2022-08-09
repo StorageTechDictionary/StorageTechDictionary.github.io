@@ -1,4 +1,11 @@
 {
+	"conditional_formatting": {
+		"Bad-Practice": "cf-red",
+		"Good-Practice": "cf-green",
+		"Feature": "cf-purple",
+		"StorageTech Contraption": "cf-orange",
+		"Term": "cf-yellow"
+	},
 	"tags": {
 		"relative_gradient": true
 	}
