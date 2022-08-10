@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A comprehensive repository of information about Minecraft blocks.">
+    <meta name="description" content="A dictionary full of Storage Tech-related terms">
 
-    <title>Minecraft Block Property Thingy</title>
+    <title>The Storage Tech Dictionary</title>
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
@@ -83,19 +83,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a class="navbar-item navbar-disabled" href="index.html">Blocks</a></li>
-                <li role="separator" class="vertical-divider hidden-xs"></li>
-                <li><a class="navbar-item" href="entities.html">Entities</a></li>
-                <li role="separator" class="vertical-divider hidden-xs"></li>
-                <li><a class="navbar-item" href="items.html">Items</a></li>
-                <li role="separator" class="vertical-divider hidden-xs"></li>
-                <li><a class="navbar-item" href="blocks_1.12.html" style="color: #ff4040;">1.12 Blocks</a></li>
-                <li role="separator" class="vertical-divider hidden-xs"></li>
-                <li><a class="navbar-item" href="propertydle/">Propertydle</a></li>
+                <li><a class="navbar-item navbar-disabled" href="index.html">Dictionary</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li role="separator" class="horizontal-divider visible-xs"></li>
-                <li><a class="navbar-item" href="https://discord.gg/RUEVmTahYg"><i class="fab fa-discord"></i></a></li>
+                <li><a class="navbar-item" href="https://discord.gg/JufJ6uf"><i class="fab fa-discord"></i></a></li>
                 <li role="separator" class="vertical-divider hidden-xs"></li>
                 <li><a class="navbar-item" href="https://github.com/JoakimThorsen/StorageTechDictionary"><i class="fab fa-github"></i></a></li>
                 <li role="separator" class="vertical-divider hidden-xs"></li>
@@ -109,8 +101,8 @@
     <div class="col-md-1 col-lg-3"></div>
     <div class="col-md-10 col-lg-6">
         <h1 class="text-center" style="font-size: 40px;">The Minecraft Storage Tech Dictionary</h1>
-        <h2 style="font-size: 24px;">This is an open source project. View the <a href="about.html">about</a> page for
-            more info.<br>Click the button below to customize your selection:</h2>
+        <h2 style="font-size: 24px;">This is an open source project. 
+            View the <a href="about.html">about</a> page for more info.</h2>
     </div>
     <div class="col-md-1 col-lg-3"></div>
     <div class="col-sm-12">
@@ -135,43 +127,6 @@
                 </div>
 
                 <div class="settings-box">
-                    <p>Export blocklist:</p>
-                    <a role="button" class="btn dropdown-btn btn-default export-csv">
-                        <i class="fas fa-file-export"></i>Export CSV
-                    </a>
-                </div>
-
-                <div class="settings-box">
-                    <p>Convert size values to:</p>
-                    <div class="btn-group">
-                        <a role="button"
-                           class="btn btn-default radio-settings"
-                           type="button"
-                           setting="size_type"
-                           value="pixel"
-                        ><i class="fas fa-th-large"></i> Pixel</a>
-                        <a role="button"
-                           class="btn btn-default radio-settings"
-                           type="button"
-                           setting="size_type"
-                           value="block"
-                        ><i class="fas fa-square"></i> Block</a>
-                    </div>
-                </div>
-
-                <div class="settings-box">
-                    <p>Expandable tables:</p>
-                    <div class="btn-group">
-                        <a role="button" class="btn btn-default toggle-settings" type="button" setting="expand_tables" rerender="false" onclick="$('table.expandable').toggleClass('display-none');">
-                            Expand All
-                        </a>
-                        <a role="button" class="btn btn-default toggle-settings" type="button" setting="hide_expand_buttons" rerender="false" onclick="$('.expand-btn').toggleClass('display-none');">
-                            Hide Buttons
-                        </a>
-                    </div>
-                </div>
-
-                <div class="settings-box">
                     <p>Font:</p>
                     <div class="btn-group">
                         <a role="button" class="btn btn-default" type="button" onclick="document.querySelector('body').style.fontFamily = 'monospace, \'Courier New\''">
@@ -188,7 +143,7 @@
         <div class="form-inline text-center">
             <input class="form-control"
                    id="search"
-                   placeholder="Seach for block(s)..."
+                   placeholder="Seach..."
                    autofocus
                    type="search"
                    autocomplete="off"

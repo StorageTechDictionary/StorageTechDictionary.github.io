@@ -6,7 +6,10 @@
 		"StorageTech Contraption": "cf-orange",
 		"Term": "cf-yellow"
 	},
-	"tags": {
-		"relative_gradient": true
+	"columns": {
+		"tags": {
+			"relative_gradient": true,
+			"filterable": true
+		}
 	}
 }

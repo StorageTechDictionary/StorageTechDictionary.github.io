@@ -225,7 +225,7 @@ function display_headers_and_table() {
                 sorted = 1;
             }
         }
-
+        let filterable = config.columns[property_id]?.filterable ?? false;
         // Header and dropdown buttons
         let append_data = /*html*/`
             <th>
@@ -258,14 +258,18 @@ function display_headers_and_table() {
                                        property="${property_id}" 
                                        reversed="true">
                                         <i class="fas fa-sort-amount-up"></i>
-                                    </a>
-                                    <a role="button" 
-                                       class="btn dropdown-btn btn-default toggle-select-all"
-                                       property="${property_id}"
-                                    >
+                                    </a>`
+                                if(filterable) {
+                                    append_data +=
+                                    `<a role="button" 
+                                        class="btn dropdown-btn btn-default toggle-select-all"
+                                        property="${property_id}"
+                                        >
                                         <i class="far fa-check-square"></i>
-                                    </a>
-                                </span>
+                                    </a>`
+                                }
+                                append_data +=
+                                `</span>
                             </div>
                         </li>
                     <li class="divider"></li>
@@ -275,15 +279,18 @@ function display_headers_and_table() {
         if (filter_obj[property_id] !== undefined) {
             filter_obj[property_id] = [filter_obj[property_id]].flat();
         }
-        sort_mixed_types(value_list[property_id]).forEach(option => {
-            const color = formatting_color(option, property_id, true);
-            append_data += /*html*/`<li>
-                    <a role="button" class="dropdown-option modify-filter" property="${property_id}" value="${option}">
-                        <span class="dot ${color ? color : 'display-none'}"></span>
-                        <span class="justify-start">${option}</span>
-                        <span class="glyphicon glyphicon-ok${filter_obj[property_id]?.includes(String(option)) ? ' display-none' : ''}">
-                        </span></a></li>`
-        });
+        
+        if(filterable) {
+            sort_mixed_types(value_list[property_id]).forEach(option => {
+                const color = formatting_color(option, property_id, true);
+                append_data += /*html*/`<li>
+                        <a role="button" class="dropdown-option modify-filter" property="${property_id}" value="${option}">
+                            <span class="dot ${color ? color : 'display-none'}"></span>
+                            <span class="justify-start">${option}</span>
+                            <span class="glyphicon glyphicon-ok${filter_obj[property_id]?.includes(String(option)) ? ' display-none' : ''}">
+                            </span></a></li>`
+            });
+        }
         append_data += `</div></ul></div></th>`;
 
         $('#output_table').children('thead').children('tr').append(append_data);
@@ -700,7 +707,7 @@ function formatting_color(value, header_name, class_exists = false) {
         }
         return color;
     }
-    if (typeof config[header_name] !== 'undefined' || value * 1 == value) {
+    if (typeof config.columns[header_name] !== 'undefined' || value * 1 == value) {
         let hue, sat, lum;
         let hslA, hslB;
         let scale_value, max;
@@ -709,12 +716,12 @@ function formatting_color(value, header_name, class_exists = false) {
 
             hslA = [276, 55, 66];
             hslB = [212, 100, 82];
-        } else if (typeof config[header_name]?.relative_gradient == 'undefined') {
+        } else if (typeof config.columns[header_name]?.relative_gradient == 'undefined') {
             return "";
         }
         hslA ??= [223, 62, 68];
         hslB ??= [159, 70, 82];
-        if (config[header_name]?.relative_gradient) {
+        if (config.columns[header_name]?.relative_gradient) {
             scale_value = value_list[header_name].indexOf(value) / value_list[header_name].length;
         }
         max = 1;
