@@ -46,7 +46,7 @@ function load_data(filename) {
             'url': filename,
             'dataType': "json",
             'success': function (d) {
-                dictionary = d;
+                dictionary = d.sort((a, b) => a.term.toLowerCase() > b.term.toLowerCase() ? 1 : -1);
             }
         }),
         $.ajax({
