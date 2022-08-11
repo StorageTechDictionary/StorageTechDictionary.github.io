@@ -62,6 +62,11 @@ function load_data(filename) {
 }
 
 function initialize_page() {
+    if(Math.random() < 0.01) {
+        let body_style = document.getElementsByTagName('body')[0]?.style;
+        body_style.background = `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("assets/tilingllamas.png") repeat`;
+        body_style['background-size'] = `1920px 1080px`;
+    }
     if (!localStorage.getItem("MCProperty-discord-promoted")) {
         $(".shameless-self-promo").removeClass("display-none")
     }

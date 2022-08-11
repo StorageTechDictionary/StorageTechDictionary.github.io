@@ -3,9 +3,9 @@ A fork of [https://JoakimThorsen.github.io/MCPropertyEncyclopedia](https://Joaki
 
 ## Contributing
 If you wish to add a new term to the dictionary:
-* Nnavigate to the file `data/dictionary.json`, click the edit (pencil) icon in the top right, and add a new entry at the bottom of the file (but within the square brackets).
+* Navigate to the file `data/dictionary.json`, click the edit (pencil) icon in the top right, and add a new entry at the bottom of the file (but within the square brackets).
 The json format of the entry should look something like the following:
-```json
+```
 [
     ...
     {

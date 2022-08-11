@@ -1,7 +1,9 @@
 body {
     /* padding-bottom: 70px; */
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("assets/llamas.png") no-repeat center center fixed;
+    background: url("assets/hall.png") no-repeat center center fixed;
+    /* background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("assets/tilingllamas.png") repeat;
+    background-size: 1920px 1080px; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
