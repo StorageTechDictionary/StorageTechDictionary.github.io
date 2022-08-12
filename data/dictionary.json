@@ -1,13 +1,13 @@
 [
+  {
+		"term": "1wt, 2wt, ... ( N-Wide Tileable )",
+		"tags": ["Feature"],
+		"description": "Annotates the width of a slice, and whether or not you can build them right next to eachother. There are systems that are 1 wide, but you can't put 2 next to eachother due to @Crosstalk, so they don't get this annotation. Sometimes they are @1wABt, 2wABt, ... instead."
+	},
 	{
 		"term": "1wABt, 2wABt, ...",
 		"tags": ["Feature"],
 		"description": "An extension of @1wt, 2wt, ... ( N-Wide Tileable ), but where a solution has been provided by the author on how to put 2 @Slices of the same system next to eachother, by moving/editing some components within the system. The capital letters ( AB, or ABC, or ABCD, ... ) annotate how the slices are tiled, and how many versions of the slice exist to achieve a result."
-	},
-	{
-		"term": "1wt, 2wt, ... ( N-Wide Tileable )",
-		"tags": ["Feature"],
-		"description": "Annotates the width of a slice, and whether or not you can build them right next to eachother. There are systems that are 1 wide, but you can't put 2 next to eachother due to @Crosstalk, so they don't get this annotation. Sometimes they are @1wABt, 2wABt, ... instead."
 	},
 	{
 		"term": "1x, 2x, 1/2x, ...",
