@@ -1,18 +1,21 @@
 [
 	{
-		"term": "1wABt, 2wABt, ...",
+		"term": "1 wide AB tileable, 2 wide AB tileable, ...",
+    "aka": ["1wABt... "], 
 		"tags": ["Feature"],
 		"description": "An extension of @1wt, 2wt, ... ( N-Wide Tileable ), but where a solution has been provided by the author on how to put 2 @Slices of the same system next to eachother, by moving/editing some components within the system. The capital letters ( AB, or ABC, or ABCD, ... ) annotate how the slices are tiled, and how many versions of the slice exist to achieve a result."
 	},
 	{
-		"term": "1wt, 2wt, ... ( N-Wide Tileable )",
+		"term": "1 wide tileable, 2 wide tileable, ... ( N-Wide Tileable )",
+    "aka": ["1wt, 2wt"],
 		"tags": ["Feature"],
 		"description": "Annotates the width of a slice, and whether or not you can build them right next to eachother. There are systems that are 1 wide, but you can't put 2 next to eachother due to @Crosstalk, so they don't get this annotation. Sometimes they are @1wABt, 2wABt, ... instead."
 	},
 	{
-		"term": "1x, 2x, 1/2x, ...",
+		"term": "1 * hopper speed, 2 * hopper speed",
+    "aka": ["1x, 2x, 1/2x"],
 		"tags": ["Feature"],
-		"description": "A shorthand way of quantifying speed of a system. The number is a multiplication of @hs ( Hopper speed ) "
+		"description": "A way of quantifying speed of a system. The number is a multiplication of @hs ( Hopper speed ) "
 	},
 	{
 		"term": "Aligner",
@@ -25,12 +28,14 @@
 		"description": "A Batcher groups item entities together before periodically releasing them into a waterstream or iceline. This is done to improve lag and because some filters ( Especially 2x filters ) would be on cooldown much less often and therefore miss less or no items."
 	},
 	{
-		"term": "BED (Block event delay)",
+		"term": "Block event delay",
+    "aka": ["BED"],
 		"tags": ["Term"],
 		"description": "Block event delay usually referes to piston updating other pistons in a chain reaction within a single game tick. Since pistons activate during the block event phase of the tick (kind of) and things excecute in the order they are schaduled, having something be activated by a piston that was updated by a chain of three other pistons before it (BED 3) will always happen before something that was activated by a BED 5 event."
 	},
 	{
 		"term": "Binary",
+    "aka": ["bin"],
 		"tags": ["Term"],
 		"description": "A code where each digit of the code is either on or off (we say it has a binary state, usually represented with 0s and 1s. A four digit (@Bit ) signal could have the states 0000 or 0110 or 0100, or any other combination of the valid states. In terms of minecraft, this usually translates to a wire or a rail being on or off, a piston being extended or retracted, a note block being powered or unpowered, etc."
 	},
@@ -65,7 +70,8 @@
 		"description": "A Box Sorter is a contraption that takes in boxes of a single item-type, takes the first item out and assigns the box to a storage @Slice that matches the filter of that item. "
 	},
 	{
-		"term": "BUD ( Block Update Detector )",
+		"term": "Block Update Detector",
+    "aka": ["BUD"],
 		"tags": ["StorageTech Contraption", "Term"],
 		"description": "A Block Update detector is a device that has something happen when it receives an update. Example: A piston that is @QC (Quasi connectivity) powered but not yet updated is called \"BUDded\", and will fire when updated. This term is sometimes used to refer to a component that is being QC powered by saying it's \"BUD powered\"."
 	},
@@ -85,7 +91,8 @@
 		"description": "A term used for when 2 tiled @Slices are interfering with eachother in any situation. "
 	},
 	{
-		"term": "CUD ( Comparator Update Detector )",
+		"term": "Comparator Update Detector",
+    "aka": ["CUD"],
 		"tags": ["StorageTech Contraption", "Term"],
 		"description": "A Comparator Update Detector is based on the behavior inherent to comparators where they don't notice inventory changes  when reading it through a solid block (including an inventory being moved away or put in place, like a composter being moved by a piston). The CUD will then change it's signal once it either receives a block or inventory update."
 	},
@@ -155,7 +162,8 @@
 		"description": "Minecraft iteratively runs its processing code in a loop. One cycle of this loop is called a Tick or Gametick (gt). \nGameticks are also used as the default measurement of time while working with redstone. The game attempts to run 20 gameticks a second (20tps), but will fail to do so and slow down the game if the server is lagging (>50mspt). \nOften confused with the less technical term \"redstone tick\". A redstone tick is in practice 2gt, as its origin comes from the default setting of a repeater. \nA default repeater when freshly placed is a 2gt- or one redstone-tick.-repeater."
 	},
 	{
-		"term": "Hex (Hexadecimal)",
+		"term": "Hexadecimal",
+    "aka": ["Hex"],
 		"tags": ["Term"],
 		"description": "A code where each digit of the code has 16 possible states (usually represented as 0 to 9 and then A to F). It's most commonly implemented with signal strength values, where @ss 0 represents 0, ss10 represents A, ss15 represents F and so on. Multiple hex signals can be combined to form a code with multiple digits. For example, valid three digit hex codes are 032, AFF, 0F4. "
 	},
@@ -165,7 +173,8 @@
 		"description": "Used to tag contraptions that lock their hoppers when the hoppers are not needed. This is because hoppers are otherwise very laggy."
 	},
 	{
-		"term": "hs ( Hopper speed )",
+		"term": "Hopper speed",
+    "aka": ["HS"],
 		"tags": ["Feature"],
 		"description": "Referred to the speed at which items are processed in a hopper ( 1 item every 8 gt )"
 	},
@@ -190,7 +199,8 @@
 		"description": "A contraption is said to be locactional when it exhibits different behavior when built in different locations in the world. This is almost always caused by redstone dust updates themselves being locational: the way they notify their neighbors of their updates is not consistent across locations in the world."
 	},
 	{
-		"term": "LUD ( Liquid Update Detector)",
+		"term": "Liquid Update Detector",
+    "aka": ["LUD"],
 		"tags": ["StorageTech Contraption", "Term"],
 		"description": "A Liquid Update Detector is a device that uses liquids to detect a special set of updates, some of which can be detected with a @BUD ( Block Update Detector ), with a @CUD ( Comparator Update Detector ) or with an observer, but some of which are exclusively detected by LUDs. After detecting the update and triggering, it usually resets the liquid to a state where it can detect an update again."
 	},
@@ -200,7 +210,8 @@
 		"description": "A Merger is a contraption that takes 2 boxes as input, and merges them into one.\nMergers can work of mixed boxes, however most mergers assume that both boxes only contain one itemtype and are often used in conjunction with @Splitters."
 	},
 	{
-		"term": "MIS ( Multi Item Sorter )",
+		"term": "Multi Item Sorter",
+    "aka": ["MIS"],
 		"tags": ["StorageTech Contraption"],
 		"description": "A type of item sorter (system) that sorts multiple item-types into a single chest or group of chests, usually used to reduce space used by single item-type sorters to group not too common items into categories."
 	},
@@ -250,7 +261,8 @@
 		"description": "A @Loader that makes use of a @Precision Hopper to achieve@Slice Preservation / Local Output "
 	},
 	{
-		"term": "QC (Quasi connectivity)",
+		"term": "Quasi connectivity",
+    "aka": ["QC"],
 		"tags": ["Term"],
 		"description": "The effect of quasi-powering a piston, dropper or dispenser. A good way to visualize when a block is being quasi-powering is to imagine a redstone lamp above the component. If that lamp was to be on in that location, the block is quasi-powered. Quasi-powering usually doesn't update the component being QCed, which results in the component not \"realizing\" it should activate or deactivate until it recieves an updated. For this reason, QC is often  used for @BUD ( Block Update Detector ), and people even sometimes say \"BUD powered\" rather than \"quasi powered\"."
 	},
@@ -305,7 +317,8 @@
 		"description": "Abbrevation for signal strength"
 	},
 	{
-		"term": "TE ( Tile Entity ) / BE ( Block Entity )",
+		"term": "Tile Entity / Block Entity",
+    "aka": ["TE, BE"],
 		"tags": ["Term"],
 		"description": "Used interchangeably.\nTile entities are blocks that have NBT-data attached to them, for example all blocks with inventories and comparators\nMore information here: https://minecraft.fandom.com/wiki/Block_entity"
 	},
@@ -330,12 +343,14 @@
 		"description": "A device or contraption to convert between encodings of a signal: @Binary to @Hex (Hexadecimal), hex to octal, pulse length to binary, block event delay to overloaded comparator, etc."
 	},
 	{
-		"term": "ttp ( Tile Tick Priority )",
+		"term": "Tile Tick Priority",
+    "aka": ["ttp"],
 		"tags": ["Term"],
 		"description": "Usually used when referring to pointing Comparators in @Dropperlines into repeaters/comparators increase the priority of the comparator and allow it to actually notice that an item is coming through"
 	},
 	{
-		"term": "UI",
+		"term": "User interface",
+    "aka": ["UI"],
 		"tags": ["Term"],
 		"description": "User interface. The part of a contraption or system that the end user interacts with, regardless of the inner workings of the system."
 	},
