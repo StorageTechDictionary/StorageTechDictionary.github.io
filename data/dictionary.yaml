@@ -1,6 +1,8 @@
 ---
 
-- term: 1wABt, 2wABt, ...
+- term: 1 wide AB tileable, 2 wide AB tileable, ...
+  aka:
+  - '1wABt... '
   tags:
   - Feature
   description: An extension of @1wt, 2wt, ... ( N-Wide Tileable ), but where a solution
@@ -9,7 +11,9 @@
     letters ( AB, or ABC, or ABCD, ... ) annotate how the slices are tiled, and how
     many versions of the slice exist to achieve a result.
 
-- term: 1wt, 2wt, ... ( N-Wide Tileable )
+- term: 1 wide tileable, 2 wide tileable, ... ( N-Wide Tileable )
+  aka:
+  - 1wt, 2wt
   tags:
   - Feature
   description: Annotates the width of a slice, and whether or not you can build them
@@ -17,11 +21,13 @@
     2 next to eachother due to @Crosstalk, so they don't get this annotation. Sometimes
     they are @1wABt, 2wABt, ... instead.
 
-- term: 1x, 2x, 1/2x, ...
+- term: 1 * hopper speed, 2 * hopper speed
+  aka:
+  - 1x, 2x, 1/2x
   tags:
   - Feature
-  description: 'A shorthand way of quantifying speed of a system. The number is a
-    multiplication of @hs ( Hopper speed ) '
+  description: 'A way of quantifying speed of a system. The number is a multiplication
+    of @hs ( Hopper speed ) '
 
 - term: Aligner
   tags:
@@ -46,7 +52,9 @@
     filters ( Especially 2x filters ) would be on cooldown much less often and therefore
     miss less or no items.
 
-- term: BED (Block event delay)
+- term: Block event delay
+  aka:
+  - BED
   tags:
   - Term
   description: Block event delay usually referes to piston updating other pistons
@@ -57,6 +65,8 @@
     that was activated by a BED 5 event.
 
 - term: Binary
+  aka:
+  - bin
   tags:
   - Term
   description: A code where each digit of the code is either on or off (we say it
@@ -107,7 +117,9 @@
     takes the first item out and assigns the box to a storage @Slice that matches
     the filter of that item. '
 
-- term: BUD ( Block Update Detector )
+- term: Block Update Detector
+  aka:
+  - BUD
   tags:
   - StorageTech Contraption
   - Term
@@ -142,7 +154,9 @@
   description: 'A term used for when 2 tiled @Slices are interfering with eachother
     in any situation. '
 
-- term: CUD ( Comparator Update Detector )
+- term: Comparator Update Detector
+  aka:
+  - CUD
   tags:
   - StorageTech Contraption
   - Term
@@ -266,7 +280,9 @@
     the default setting of a repeater. \nA default repeater when freshly placed is
     a 2gt- or one redstone-tick.-repeater."
 
-- term: Hex (Hexadecimal)
+- term: Hexadecimal
+  aka:
+  - Hex
   tags:
   - Term
   description: 'A code where each digit of the code has 16 possible states (usually
@@ -281,7 +297,9 @@
   description: Used to tag contraptions that lock their hoppers when the hoppers are
     not needed. This is because hoppers are otherwise very laggy.
 
-- term: hs ( Hopper speed )
+- term: Hopper speed
+  aka:
+  - HS
   tags:
   - Feature
   description: Referred to the speed at which items are processed in a hopper ( 1
@@ -318,7 +336,9 @@
     caused by redstone dust updates themselves being locational: the way they notify
     their neighbors of their updates is not consistent across locations in the world.'
 
-- term: LUD ( Liquid Update Detector)
+- term: Liquid Update Detector
+  aka:
+  - LUD
   tags:
   - StorageTech Contraption
   - Term
@@ -336,7 +356,9 @@
     A Merger is a contraption that takes 2 boxes as input, and merges them into one.
     Mergers can work of mixed boxes, however most mergers assume that both boxes only contain one itemtype and are often used in conjunction with @Splitters.
 
-- term: MIS ( Multi Item Sorter )
+- term: Multi Item Sorter
+  aka:
+  - MIS
   tags:
   - StorageTech Contraption
   description: A type of item sorter (system) that sorts multiple item-types into
@@ -410,7 +432,9 @@
   description: 'A @Loader that makes use of a @Precision Hopper to achieve@Slice Preservation
     / Local Output '
 
-- term: QC (Quasi connectivity)
+- term: Quasi connectivity
+  aka:
+  - QC
   tags:
   - Term
   description: The effect of quasi-powering a piston, dropper or dispenser. A good
@@ -490,7 +514,9 @@
   - Term
   description: Abbrevation for signal strength
 
-- term: TE ( Tile Entity ) / BE ( Block Entity )
+- term: Tile Entity / Block Entity
+  aka:
+  - TE, BE
   tags:
   - Term
   description: |-
@@ -533,14 +559,18 @@
     @Binary to @Hex (Hexadecimal), hex to octal, pulse length to binary, block event
     delay to overloaded comparator, etc.'
 
-- term: ttp ( Tile Tick Priority )
+- term: Tile Tick Priority
+  aka:
+  - ttp
   tags:
   - Term
   description: Usually used when referring to pointing Comparators in @Dropperlines
     into repeaters/comparators increase the priority of the comparator and allow it
     to actually notice that an item is coming through
 
-- term: UI
+- term: User interface
+  aka:
+  - UI
   tags:
   - Term
   description: User interface. The part of a contraption or system that the end user
