@@ -603,7 +603,6 @@ function display_results() {
     let append_string = "";
     output_data.forEach(entry => {
         append_string += "<tr>";
-        console.log(entry);
         if (search) {
             if(settings_obj.search_in_term) entry.term = highlightSearchString(entry.term, search);
             if(settings_obj.search_in_aka) entry.aka = highlightSearchString(entry.aka, search);
@@ -735,7 +734,6 @@ function formatting_color(value, header_name, class_exists = false) {
             scale_value = value_list[header_name].indexOf(value) / value_list[header_name].length;
         }
         max = 1;
-        // console.log(scale_value, max, value, header_name);
         hue ??= scale(scale_value, max, hslA[0], hslB[0]);
         sat ??= scale(scale_value, max, hslA[1], hslB[1]);
         lum ??= scale(scale_value, max, hslA[2], hslB[2]);
