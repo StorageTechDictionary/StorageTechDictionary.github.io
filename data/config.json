@@ -7,9 +7,18 @@
 		"Term": "cf-yellow"
 	},
 	"columns": {
+		"term": {
+			"filterable": false
+		},
+		"aka": {
+			"filterable": false
+		},
 		"tags": {
 			"relative_gradient": true,
 			"filterable": true
+		},
+		"description": {
+			"filterable": false
 		}
 	}
 }

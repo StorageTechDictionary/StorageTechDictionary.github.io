@@ -27,7 +27,7 @@ try {
         ?? [];
 }
 
-let header_arr = ["term", "aka", "tags", "description"];
+let header_arr;
 
 try {
     settings_obj = JSON.parse(urlParams.get("settings")) ?? {};
@@ -38,14 +38,17 @@ try {
 let search = urlParams.get("search") ?? "";
 let term, entry_header, exportable_list;
 
-function load_data(filename) {
+function load_data() {
 
     initialize_page();
     $.when(
         $.ajax({
-            'url': filename,
-            'dataType': "json",
+            // 'url': 'data/dictionary.json',
+            // 'dataType': "json",
+            'url': 'data/dictionary.yaml',
+            'dataType': "text",
             'success': function (d) {
+                d = jsyaml.load(d);
                 dictionary = d.sort((a, b) => a.term.toLowerCase() > b.term.toLowerCase() ? 1 : -1);
             }
         }),
@@ -57,6 +60,7 @@ function load_data(filename) {
             }
         })
     ).done(function(){
+        header_arr = Object.keys(config.columns);
         display_headers_and_table();
     });
 }
@@ -452,9 +456,9 @@ function display_results() {
         return Boolean(search.split('|').some(subsearch =>
             subsearch.split(' ').every(search_term =>
                 // show if term appears in selected column:
-                (settings_obj.search_in_term && String(row.term).toLowerCase().includes(search_term.toLowerCase()))
-                || (settings_obj.search_in_aka && String(row.aka).toLowerCase().includes(search_term.toLowerCase()))
-                || (settings_obj.search_in_description && String(row.description).toLowerCase().includes(search_term.toLowerCase()))
+                   (settings_obj.search_in_term         && row.term         && String(row.term).toLowerCase().includes(search_term.toLowerCase()))
+                || (settings_obj.search_in_aka          && row.aka          && String(row.aka).toLowerCase().includes(search_term.toLowerCase()))
+                || (settings_obj.search_in_description  && row.description  && String(row.description).toLowerCase().includes(search_term.toLowerCase()))
                 // alternatively, if no column is selected for search, default to showing all results:
                 || (!settings_obj.search_in_term && !settings_obj.search_in_aka && !settings_obj.search_in_description)
             )
@@ -599,6 +603,7 @@ function display_results() {
     let append_string = "";
     output_data.forEach(entry => {
         append_string += "<tr>";
+        console.log(entry);
         if (search) {
             if(settings_obj.search_in_term) entry.term = highlightSearchString(entry.term, search);
             if(settings_obj.search_in_aka) entry.aka = highlightSearchString(entry.aka, search);
