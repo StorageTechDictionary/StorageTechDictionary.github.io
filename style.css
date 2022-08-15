@@ -422,6 +422,11 @@ td .nested-table {
     white-space: nowrap;
 }
 
+.entry-mention {
+    background-color: #eddcf3;
+    color: #9B59B6;
+}
+
 .expand-btn {
     color: #333;
     background-color: #A3D6FC;

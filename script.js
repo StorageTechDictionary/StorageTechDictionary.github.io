@@ -653,7 +653,7 @@ function display_results() {
             return_data += "</tbody></table></td>";
 
         } else {
-            return_data = `<td ${formatting_color(entry, header_name)}>${entry}</td>`;
+            return_data = `<td ${formatting_color(entry, header_name)}>${value_parser(entry)}</td>`;
         }
         return return_data;
     }
@@ -666,6 +666,17 @@ function display_results() {
         // $target.toggle("toggle"); // With toggle animation/delay
         // $target.toggle(); // No toggle animation/delay
         $target.toggleClass("display-none"); // uses a class instead
+    });
+
+    $('.entry-mention').click(function (e) {
+        e.stopPropagation();
+
+        const entry = $(this).attr("entry");
+        $('#search').val(entry);
+        search = entry;
+        
+        update_window_history();
+        display_results();
     });
 
 }
@@ -891,8 +902,34 @@ function highlightSearchString(input, search) {
     search.split(' ')
         .filter(e => e !== '')
         .forEach(search_term => {
-            input = input.replace(new RegExp(search_term, "ig"), '{$&}');
+            var search_regex = new RegExp(search_term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), "gi");
+            input = input.replace(search_regex, '{$&}');
         });
     input = input.replace(/{/g, '<span class="search-highlight">').replace(/}/g, '</span>');
     return input;
+}
+
+function value_parser(value) {
+    if(isNum(value)) return value;
+    if(typeof value === 'string') {
+        // Entry @-mention
+        // Matches either @[term] or @[alternative text](term), and links the term, but
+        // uses either the term or alt text depending on which half of the regex OR expression
+        // is used, by outputting both, as their occurance is mutually exclusive.
+        const entry_mention_regexp = /@\[([^\]]*?)\]\((.*?)\)|@\[([^\]]*?)\]/g;
+        value = value.replace(entry_mention_regexp, `<a role="button" class="entry-mention" entry="$2$3">$1$3</a>`);
+
+        // Markdown-style URL parsing:
+        // Matches [text](link)
+        const markdown_url_regexp = /\[([^\]]*?)\]\((.*?)\)/g;
+        value = value.replace(markdown_url_regexp, `<a target="_blank" href="$2">$1</a>`);
+        
+        // Basic URL parsing:
+        // Only cares about http/https, matches "normal" url format until the first space.
+        const basic_url_regexp = /(https?:\/\/(\w*\.)+\w+\/?[^ ]*)/g;
+        value = value.replace(basic_url_regexp, `<a target="_blank" href="$1">$1</a>`);
+        
+        return value;
+    }
+    return value;
 }
