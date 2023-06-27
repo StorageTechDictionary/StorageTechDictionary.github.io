@@ -1,7 +1,6 @@
 - term: Aligner
   tags:
     - StorageTech Contraption
-    - Concept
   description: >-
     It aligns items within a block to ensure some sort of behavior. More basic
     concepts involve simply letting items in a water or ice stream hit against a
@@ -58,8 +57,7 @@
   aka:
     - BUD
   tags:
-    - StorageTech Contraption
-    - Concept
+    - Contraption
   description: >-
     A Block Update detector is a device that has something happen when it
     receives an update. Example: A piston that is @[Quasi-powered](Quasi
@@ -81,6 +79,7 @@
 - term: Box Detection
   tags:
     - Feature
+    - StorageTech Concept
   description: >-
     Usually used as a way to tag @[Loaders](Loader) and @[Box Displays](Box
     Display) that restart themselves when boxes come in and they were previously
@@ -140,8 +139,7 @@
   aka:
     - CUD
   tags:
-    - StorageTech Contraption
-    - Concept
+    - Contraption
   description: >-
     A Comparator Update Detector is based on the behavior inherent to
     comparators where they don't notice inventory changes  when reading it
@@ -152,15 +150,14 @@
 - term: Crosstalk
   tags:
     - Bad Practice
-    - Concept
+    - StorageTech Concept
   description: >-
     A term used for when 2 tiled @[Slices](slice) are interfering with eachother
     in any situation. 
 
 - term: Decoder
   tags:
-    - StorageTech Contraption
-    - Concept
+    - Contraption
   description: >-
     A Decoder has two main meanings in storage tech: A contraption that
     translates code or data to item, like a an encoded storage hall, the inverse
@@ -196,12 +193,14 @@
 
 - term: Dropperline
   tags:
-    - Concept
+    - Contraption
   description: A line of droppers to transport items fast.
 
 - term: Dust updateless
   tags:
     - Feature
+    - Good Practice
+    - Concept
   description: >-
     Some contraptions are not @[Dustless], but the dust they use does not get
     updated (does not change @[ss](Signal Strength)). This can be because it is
@@ -213,6 +212,8 @@
 - term: Dustless
   tags:
     - Feature
+    - Good Practice
+    - Concept
   description: >-
     A contraption that makes no use of redstone dust. Redstone dust is one of
     the single most laggiest components in the game, since it gives 25 updates
@@ -239,14 +240,13 @@
 - term: Encoder
   tags:
     - StorageTech Contraption
-    - Concept
   description: >-
     An Encoder has two main meanings in storage tech: A contraption that
     translates items into a code, where code can be any sort of signal in any
-    base (binn, hex, other less used ones) or other codes (block event delay),
+    base (bin, hex, other less used ones) or other codes (block event delay),
     or a contraption that translates a player input (say a selection pannel)
     into code. In addition, in computational redstone, this sometimes referes to
-    decreasing the size of the base used in the code: hex to bin, for example,
+    decreasing the size of the base used in the code: for example hex to bin.
     see @[Transcoder].
 
 - term: Fill Sorter
@@ -305,14 +305,15 @@
 - term: Global Output
   tags:
     - Feature
+    - StorageTech Concept
   description: >-
     A contraption, usually a @[1-wide tileable](n-Wide Tileable) one, that has
     only one output for all the @[Slices](Slice), in contrast to one output per
-    slice (see @[Slice] Preservation / Local Output).
+    slice (see @[Slice Preservation]).
 
 - term: Global/Local
   tags:
-    - Concept
+    - StorageTech Concept
   description: >-
     Annotates if a signal comes from a global system ( a "brain" ), or from
     within a @[Slice].
@@ -339,6 +340,7 @@
     - '1x, 2x, 1/2x, ...'
   tags:
     - Feature
+    - StorageTech Concept
   description: >-
     Refers to the speed at which items are processed in a hopper (1 item every
     8@[gt](gametick)). Often used as a way of quantifying speed of a system  in
@@ -349,6 +351,8 @@
 - term: Hopper-locked
   tags:
     - Feature
+    - Good Practice
+    - StorageTech Concept
   description: >-
     Used to tag contraptions that lock their hoppers when the hoppers are not
     needed. This is because hoppers are otherwise very laggy.
@@ -377,8 +381,7 @@
   aka:
     - LUD
   tags:
-    - StorageTech Contraption
-    - Concept
+    - Contraption
   description: >-
     A Liquid Update Detector (LUD) is a device that uses liquids to detect a
     special set of updates, some of which can be detected with a @[Block Update
@@ -420,7 +423,7 @@
 
 - term: Mixed Box
   tags:
-    - Concept
+    - StorageTech Concept
   description: A shulker box with multiple item types.
 
 - term: Mixed loader
@@ -447,6 +450,7 @@
     - nwABt
   tags:
     - Feature
+    - Concept
   description: >-
     An extension of @[n-Wide tileable], but where a solution has been provided
     by the author on how to put 2 @[Slices](Slice) of the same system next to
@@ -460,11 +464,12 @@
     - nwt
   tags:
     - Feature
+    - Concept
   description: >-
     Annotates the width of a slice, and whether or not you can build them right
     next to eachother. There are systems that are 1 wide, but you can't put 2
     next to eachother due to @[Crosstalk], so they don't get this annotation.
-    Sometimes they are @[n-Wide Tileable] instead.
+    Sometimes they are @[n-Wide AB Tileable] instead.
 
 - term: Pair Searcher
   aka:
@@ -510,16 +515,18 @@
 - term: Pistonless
   tags:
     - Feature
+    - Good Practice
   description: >-
     A contraption that makes no use of pistons. This is to reduce client-side
     lag due to tile entities in 1.16+ and general server-side lag, since each
     piston has to check all the @[Tile Entities](Tile Entity) in the world each
     time it tries to extend, and storage systems tend to have a lot of TEs. This
-    effect is partly mitigated in 1.17+ and greatly mitigate by the Lithium mod.
+    effect is partly mitigated in 1.17+ and greatly mitigated by the Lithium mod.
 
 - term: Precision Hopper
   tags:
-    - Concept
+    - Feature
+    - StorageTech Contraption
   description: >-
     A hopper that is unlocked in the same tick as it's supposed to suck up an
     item. If the item entity is created in that tick, as it would be with for
@@ -590,6 +597,7 @@
     - Local Output
   tags:
     - Feature
+    - StorageTech Concept
   description: >-
     A contraption is said to be slice preserving if it outputs the shulker boxes
     or items within the slice, in contrast to @[Global Output], where there's
@@ -626,7 +634,7 @@
 - term: ss
   tags:
     - Concept
-  description: Abbrevation for signal strength
+  description: Abbrevation for redstone dust/comparator Signal Strength
 
 - term: Temp Storage
   tags:
@@ -647,14 +655,10 @@
   tags:
     - Concept
   description: >-
-    Used interchangeably.
-
     Tile entities (less often referred to as Block Entities) are blocks that
-    have NBT-data 
+    have NBT-data attached to them, for example all blocks with inventories.
 
-    attached to them, for example all blocks with inventories and comparators
-
-    More information here: https://minecraft.fandom.com/wiki/Block_entity
+    More information on the [block entity wiki page](https://minecraft.fandom.com/wiki/Block_entity)
 
 - term: Tile Tick Priority
   aka:
@@ -667,22 +671,16 @@
     priority of the comparator and allow it to actually notice that an item is
     coming through
 
-- term: Toggle state
-  tags:
-    - Feature
-  description: >-
-    A toggle state is a component or contraption that has two or more states and
-    cycles through them every time it receives a signal. The typical example is
-    a piston spitting and grabbing a block every time it gets short pulsed.
-
 - term: Togglestate
+  aka:
+    - Toggle state
   tags:
     - Bad Practice
     - Concept
   description: >-
-    Usually used to refer to intentionally have sticky piston's drop their block
-    by sending it a <3gt pulse to remember a state. ( Toggling between block in
-    and out ). 
+    Usually used to refer to intentionally having sticky piston's drop its block
+    by sending it a <3gt pulse in order to cycle between two different states
+    (toggling between block in and out).
 
     Importantly, togglestates have no default position, and there is no way to
     reset them. This makes them painful to use in survival as they're hard to
