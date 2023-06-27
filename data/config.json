@@ -1,10 +1,14 @@
 {
 	"conditional_formatting": {
-		"Bad-Practice": "cf-red",
-		"Good-Practice": "cf-green",
+		"Bad Practice": "cf-red",
+		"Good Practice": "cf-green",
+
 		"Feature": "cf-purple",
-		"StorageTech Contraption": "cf-orange",
-		"Term": "cf-yellow"
+		
+		"Concept": "cf-yellow",
+		"Contraption": "cf-orange",
+		"StorageTech Concept": "cf-orange",
+		"StorageTech Contraption": "cf-orange"
 	},
 	"columns": {
 		"term": {
