@@ -9,31 +9,20 @@ let sort_arr;
 let settings_obj;
 
 // Try-catch spam is for "legacy" purposes, old JSON-links will still work for a while
-try {
-    filter_obj = JSON.parse(urlParams.get("filter")) ?? {};
-} catch {
-    filter_obj = parse_custom_url(urlParams.get("filter")) ?? {};
-}
 
-try {
-    sort_arr = JSON.parse(urlParams.get("sort")) ?? [];
-} catch {
-    sort_arr = urlParams.get("sort")
-            .split(',')
-            .map(prop => {
-                let reversed = prop.charAt(0) === '!';
-                return {property: prop.substr(reversed), reversed: reversed}
-            })
-        ?? [];
-}
+filter_obj = parse_custom_url(urlParams.get("filter")) ?? {};
+
+sort_arr = urlParams.get("sort")
+        ?.split(',')
+        ?.map(prop => {
+            let reversed = prop.charAt(0) === '!';
+            return {property: prop.substr(reversed), reversed: reversed}
+        })
+    ?? [];
 
 let header_arr;
 
-try {
-    settings_obj = JSON.parse(urlParams.get("settings")) ?? {};
-} catch {
-    settings_obj = parse_custom_url(urlParams.get("settings")) ?? {};
-}
+settings_obj = parse_custom_url(urlParams.get("settings")) ?? {};
 
 let search = urlParams.get("search") ?? "";
 let term, entry_header, exportable_list;
@@ -43,8 +32,6 @@ function load_data() {
     initialize_page();
     $.when(
         $.ajax({
-            // 'url': 'data/dictionary.json',
-            // 'dataType': "json",
             'url': 'data/dictionary.yaml',
             'dataType': "text",
             'success': function (d) {
@@ -70,9 +57,6 @@ function initialize_page() {
         let body_style = document.getElementsByTagName('body')[0]?.style;
         body_style.background = `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("assets/tilingllamas.png") repeat`;
         body_style['background-size'] = `1920px 1080px`;
-    }
-    if (!localStorage.getItem("MCProperty-discord-promoted")) {
-        $(".shameless-self-promo").removeClass("display-none")
     }
     
     $(window).on('popstate', function () {
@@ -127,8 +111,6 @@ function initialize_page() {
 
 // This functions only handles headers, but calls display_results()
 function display_headers_and_table() {
-
-    un_datatable();
 
     $('#output_table').find('thead>tr>th').remove();
 
@@ -291,7 +273,7 @@ function display_headers_and_table() {
         
         if(filterable) {
             sort_mixed_types(value_list[property_id]).forEach(option => {
-                const color = formatting_color(option, property_id, true);
+                const color = formatting_color(option, true);
                 append_data += /*html*/`<li>
                         <a role="button" class="dropdown-option modify-filter" property="${property_id}" value="${option}">
                             <span class="dot ${color ? color : 'display-none'}"></span>
@@ -395,7 +377,6 @@ function display_headers_and_table() {
 
 // Displays all the table data
 function display_results() {
-    un_datatable();
     $('#output_table').find('tbody>tr').remove();
 
     // Table data
@@ -453,16 +434,23 @@ function display_results() {
 
     // Search filtering:
     output_data = output_data.filter(row => {
-        return Boolean(search.split('|').some(subsearch =>
+        // if no column is selected for search, default to showing all results:
+        if (!settings_obj.search_in_term && !settings_obj.search_in_aka && !settings_obj.search_in_description) {
+            return true;
+        }
+        if(search.split('|').some(subsearch =>
             subsearch.split(' ').every(search_term =>
                 // show if term appears in selected column:
-                   (settings_obj.search_in_term         && row.term         && String(row.term).toLowerCase().includes(search_term.toLowerCase()))
-                || (settings_obj.search_in_aka          && row.aka          && String(row.aka).toLowerCase().includes(search_term.toLowerCase()))
-                || (settings_obj.search_in_description  && row.description  && String(row.description).toLowerCase().includes(search_term.toLowerCase()))
-                // alternatively, if no column is selected for search, default to showing all results:
-                || (!settings_obj.search_in_term && !settings_obj.search_in_aka && !settings_obj.search_in_description)
+                   (settings_obj.search_in_term        && row.term        && String(row.term).toLowerCase().includes(search_term.toLowerCase()))
+                || (settings_obj.search_in_aka         && row.aka         && String(row.aka).toLowerCase().includes(search_term.toLowerCase()))
+                || (settings_obj.search_in_description && row.description && String(row.description).toLowerCase().includes(search_term.toLowerCase()))
             )
-        ))
+        )) return true;
+        if(search.charAt(0) === `"`) {
+            search_term = search.replace(/"/g, '').toLowerCase();
+            return settings_obj.search_in_term && row.term && String(row.term).toLowerCase() == search_term;
+        }
+        return false;
     })
 
     // For exporting as CSV:
@@ -599,47 +587,43 @@ function display_results() {
 
     output_data = sort_properties(output_data, sort_arr);
 
+    
     // Table outputting
-    let append_string = "";
-    output_data.forEach(entry => {
-        append_string += "<tr>";
-        if (search) {
-            if(settings_obj.search_in_term) entry.term = highlightSearchString(entry.term, search);
-            if(settings_obj.search_in_aka) entry.aka = highlightSearchString(entry.aka, search);
-            if(settings_obj.search_in_description) entry.description = highlightSearchString(entry.description, search);
-        }
-        for(let header_name of header_arr) {
-            append_string += get_data_cell(entry[header_name] ?? "", header_name);
-        }
-        // append_string += `<td>:<input type="text">,</td>`;
-        append_string += "</tr>";
-    });
-    $('#output_table').children('tbody').append(append_string);
+    if(output_data.length > 0) {
+        let append_string = "";
+        output_data.forEach(entry => {
+            entry.term = value_parser(entry.term);
+            entry.aka = value_parser(entry.aka);
+            entry.description = value_parser(entry.description);
 
-    if(!('ontouchstart' in window)
-    // && false
-    ){
-        $('#output_table').DataTable({
-            colReorder: {
-                fixedColumnsLeft: 2
-            },
-            paging: false,
-            searching: false,
-            ordering: false,
-            info: false
+            append_string += "<tr>";
+            if (search) {
+                if(settings_obj.search_in_term) entry.term = highlightSearchString(entry.term, search);
+                if(settings_obj.search_in_aka) entry.aka = highlightSearchString(entry.aka, search);
+                if(settings_obj.search_in_description) entry.description = highlightSearchString(entry.description, search);
+            }
+            for(let header_name of header_arr) {
+                append_string += get_data_cell(entry[header_name] ?? "", header_name);
+            }
+            // append_string += `<td>:<input type="text">,</td>`;
+            append_string += "</tr>";
         });
+        $('#output_table').children('tbody').append(append_string);
+    } else {
+        $('#output_table').children('tbody').append("<tr><td colspan='100%'>No results found</td></tr>");
     }
 
     function get_data_cell(entry, header_name, top_level = true) {
         let return_data;
         if (typeof (entry) == 'object' && entry != null) {
             return_data = `<td class="nested-cell">`;
-            if (top_level && (get_all_values(entry).length > 2 || (Object.keys(entry).join().match(/<br>/g) || []).length > 2)) {
-                return_data += `<button class="btn expand-btn ${settings_obj.hide_expand_buttons ? `display-none` : ""}" type="button" data-toggle="collapse-next">Expand</button>\n`
-                return_data += `<table class="table table-bordered table-hover nested-table expandable ${settings_obj.expand_tables ? "" : `display-none`}"><tbody>`;
-            } else {
-                return_data += `<table class="table table-bordered table-hover nested-table"><tbody>`;
-            }
+            // if (top_level && (get_all_values(entry).length > 2 || (Object.keys(entry).join().match(/<br>/g) || []).length > 2)) {
+            //     return_data += `<button class="btn expand-btn ${settings_obj.hide_expand_buttons ? `display-none` : ""}" type="button" data-toggle="collapse-next">Expand</button>\n`
+            //     return_data += `<table class="table table-bordered table-hover nested-table expandable ${settings_obj.expand_tables ? "" : `display-none`}"><tbody>`;
+            // } else {
+            //     return_data += `<table class="table table-bordered table-hover nested-table"><tbody>`;
+            // }
+            return_data += `<table class="table table-bordered table-hover nested-table"><tbody>`;
 
             if (Array.isArray(entry)) {
                 entry.forEach(value => {
@@ -653,7 +637,7 @@ function display_results() {
             return_data += "</tbody></table></td>";
 
         } else {
-            return_data = `<td ${formatting_color(entry, header_name)}>${value_parser(entry)}</td>`;
+            return_data = `<td ${formatting_color(entry)}>${entry}</td>`;
         }
         return return_data;
     }
@@ -671,7 +655,7 @@ function display_results() {
     $('.entry-mention').click(function (e) {
         e.stopPropagation();
 
-        const entry = $(this).attr("entry");
+        const entry = `"${$(this).attr("entry")}"`;
         $('#search').val(entry);
         search = entry;
         
@@ -679,12 +663,6 @@ function display_results() {
         display_results();
     });
 
-}
-
-function un_datatable() {
-    if ($.fn.dataTable.isDataTable('#output_table')) {
-        $('#output_table').DataTable().destroy();
-    }
 }
 
 function get_all_values(input, unique_only = false) {
@@ -716,7 +694,7 @@ function sort_mixed_types(list) {
     });
 }
 
-function formatting_color(value, header_name, class_exists = false) {
+function formatting_color(value, class_exists = false) {
     let color = "";
 
     let found_key;
@@ -724,34 +702,6 @@ function formatting_color(value, header_name, class_exists = false) {
         color = config.conditional_formatting[found_key];
         if (!class_exists) {
             color = `class="${color}"`;
-        }
-        return color;
-    }
-    if (typeof config.columns[header_name] !== 'undefined' || value * 1 == value) {
-        let hue, sat, lum;
-        let hslA, hslB;
-        let scale_value, max;
-        if (isNum(value)) {
-            scale_value = value * 1;
-
-            hslA = [276, 55, 66];
-            hslB = [212, 100, 82];
-        } else if (typeof config.columns[header_name]?.relative_gradient == 'undefined') {
-            return "";
-        }
-        hslA ??= [223, 62, 68];
-        hslB ??= [159, 70, 82];
-        if (config.columns[header_name]?.relative_gradient) {
-            scale_value = value_list[header_name].indexOf(value) / value_list[header_name].length;
-        }
-        max = 1;
-        hue ??= scale(scale_value, max, hslA[0], hslB[0]);
-        sat ??= scale(scale_value, max, hslA[1], hslB[1]);
-        lum ??= scale(scale_value, max, hslA[2], hslB[2]);
-
-        color = `style="background-color: hsl(${hue},${sat}%,${lum}%)!important"`;
-        if (class_exists) {
-            color = '"' + color;
         }
         return color;
     }
@@ -811,6 +761,12 @@ function serialize_custom_url(value) {
 
 // Only supports objects at the top level, nested objects will break parsing.
 function parse_custom_url(value) {
+    if (value === '') {
+        return false;
+    }
+    if (value === undefined || value === null) {
+        return null;
+    }
     if (value.charAt(0) === '(') {
         const split = value.split(';');
         const result = {};
@@ -824,9 +780,6 @@ function parse_custom_url(value) {
     const split = value.split(',');
     if (split.length > 1) {
         return split.map(v => parse_custom_url(v))
-    }
-    if (value === '') {
-        return false;
     }
     // if (value * 1 == value) {
     //     return parseFloat(value);
@@ -876,10 +829,6 @@ function scrollToTop() {
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
-function stopPromo() {
-    localStorage.setItem("MCProperty-discord-promoted", true)
-}
-
 function toTitleCase(str) {
     return str.replace(
         /\w\S*/g,
@@ -899,17 +848,22 @@ function highlightSearchString(input, search) {
         return input.map(v => highlightSearchString(v, search));
     }
     if(typeof input === 'undefined') return undefined;
-    search.split(' ')
+    search.replaceAll('"', '')
+        .split(' ')
         .filter(e => e !== '')
         .forEach(search_term => {
-            var search_regex = new RegExp(search_term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), "gi");
-            input = input.replace(search_regex, '{$&}');
+            search_term = search_term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+            var search_regex = new RegExp(`${search_term}(?![^<]*>)`, "gi");
+            input = input.replaceAll(search_regex, '{{{$&}}}');
         });
-    input = input.replace(/{/g, '<span class="search-highlight">').replace(/}/g, '</span>');
+    input = input.replace(/{{{/g, '<span class="search-highlight">').replace(/}}}/g, '</span>');
     return input;
 }
 
 function value_parser(value) {
+    if(Array.isArray(value)) {
+        return value.map(v => value_parser(v));
+    }
     if(isNum(value)) return value;
     if(typeof value === 'string') {
         // Entry @-mention
