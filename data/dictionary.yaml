@@ -408,6 +408,13 @@
     their neighbors of their updates is not consistent across locations in the
     world.
 
+- term: Long Pulse
+  tags:
+    - Concept
+  description: >-
+    A pulse of 3@[gt](gametick) or longer, usually used to ensure that a sticky
+    piston will not drop its block when powered. Opposite of a @[Long pulse].
+    
 - term: Merger
   tags:
     - StorageTech Contraption
@@ -578,6 +585,13 @@
     @[Decoders](Decoder), in the computational redstone sense. For example
     serial hex to parallel binary is a deserializer encoder.
 
+- term: Short Pulse
+  tags:
+    - Concept
+  description: >-
+    A pulse of 2@[gt](gametick) or shorter, often used to make sticky pistons
+    drop their blocks (see also: @[Togglestate]). Opposite of a @[Long pulse].
+
 - term: Silent
   tags:
     - Feature
@@ -622,7 +636,7 @@
     spitting blocks, or other forms of @[Toggle state]. This term is also
     sometimes interchangeably used with @[Pistonless], although you can have a
     solid state contraption (in the loose way) with pistons by having them never
-    spit out the block, i.e. powering them with long pulses only.
+    spit out the block, i.e. powering them with @[long pulse]s only.
 
 - term: Splitter
   tags:
@@ -679,8 +693,8 @@
     - Concept
   description: >-
     Usually used to refer to intentionally having sticky piston's drop its block
-    by sending it a <3gt pulse in order to cycle between two different states
-    (toggling between block in and out).
+    by sending it a <3gt pulse (called a @[short pulse]) in order to cycle between
+    two different states (toggling between block in and out).
 
     Importantly, togglestates have no default position, and there is no way to
     reset them. This makes them painful to use in survival as they're hard to
