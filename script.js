@@ -875,13 +875,14 @@ function value_parser(value) {
 
         // Markdown-style URL parsing:
         // Matches [text](link)
-        const markdown_url_regexp = /\[([^\]]*?)\]\((.*?)\)/g;
+        const markdown_url_regexp = /\[([^\]]+?)\]\((.+?)\)/g;
+        console.log(value.replace(markdown_url_regexp, `("$1": "$2")`));
         value = value.replace(markdown_url_regexp, `<a target="_blank" href="$2">$1</a>`);
         
-        // Basic URL parsing:
-        // Only cares about http/https, matches "normal" url format until the first space.
-        const basic_url_regexp = /(https?:\/\/(\w*\.)+\w+\/?[^ ]*)/g;
-        value = value.replace(basic_url_regexp, `<a target="_blank" href="$1">$1</a>`);
+        // // Basic URL parsing:
+        // // Only cares about http/https, matches "normal" url format until the first space.
+        // const basic_url_regexp = /(https?:\/\/(\w*\.)+\w+\/?[^ ]*)/g;
+        // value = value.replace(basic_url_regexp, `<a target="_blank" href="$1">$1</a>`);
         
         return value;
     }
