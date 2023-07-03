@@ -279,6 +279,16 @@
     Short for fixed type item sorter: a sorter that filters out one single item
     type and can't be changed without manual intervention. 
 
+- term: FPS
+  aka:
+    - Frames Per Second
+  tags:
+    - Concept
+  description: >-
+    A measure of how many frames a client is able to process each second.
+    This is similar to, but independent of @[TPS], which denotes server-side
+    performance.
+
 - term: Gametick
   aka:
     - gt
@@ -434,6 +444,19 @@
     Fullness detection is usually done by reading that items are backing up in
     the container ( hopper / dropper ) feeding the box.
 
+- term: MSPT
+  aka:
+    - Milliseconds Per Tick
+    - ms
+  tags:
+    - Concept
+  description: >-
+    A measurement of how many milliseconds it takes to process each @[gametick].
+    If a server exceeds 50MSPT in total, then the game will slow down, as there
+    is no longer enough time to process all 20 @[ticks per second](tps).
+    MSPT is also used as a measure of how performance-intensive a contraption
+    is by seeing how much the MSPT increases by running/loading it.
+
 - term: Multi Item Sorter
   aka:
     - MIS
@@ -517,8 +540,8 @@
     - Feature
     - Good Practice
   description: >-
-    A contraption that makes no use of pistons. This is to reduce client-side
-    lag due to tile entities in 1.16+ and general server-side lag, since each
+    A contraption that makes no use of pistons. This is to reduce @[client-side
+    lag](fps) due to tile entities in 1.16+ and general server-side lag, since each
     piston has to check all the @[Tile Entities](Tile Entity) in the world each
     time it tries to extend, and storage systems tend to have a lot of TEs. This
     effect is partly mitigated in 1.17+ and greatly mitigated by the Lithium mod.
@@ -689,6 +712,17 @@
     This is different to latches, which are also systems that hold state.
     Latches usually have a reset signal that you can trigger when something goes
     wrong.
+
+- term: TPS
+  aka:
+    - Ticks per second
+  tags:
+    - Concept
+  description: >-
+    A measurement of how many @[gametick]s are happening each second. The game
+    normally operates at 20TPS, but if @[MSPT] exceeds 50ms then the game will
+    start to slow down. Mods such as Carpet Mod are able to stop, slow down, 
+    or speed up the tick speed of a server, which can be useful for testing.
 
 - term: Transcoder
   tags:
