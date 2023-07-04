@@ -587,8 +587,10 @@
     - Bad Practice
   description: >-
     An item filter that relies on powering just two pieces of redstone dust
-    before letting items flow through. Tiling two identical SS2 filters next to
-    each other can cause @[crosstalk] if one of the slots of the hopper fill up 
+    before letting items flow through, which means that each filter has more
+    room to pick up bigger batches of items as the idle state of the filter
+    will have a lower item count. Tiling two identical SS2 filters next to each
+    other can cause @[crosstalk] if one of the slots of the hopper fill up
     completely. This would cause the adjacent filter to break, and is therefore
     considered bad practice, unless mitigated by using signal strength isolated 
     filters that have been @[AB-tiled](n-wide AB tileable).
