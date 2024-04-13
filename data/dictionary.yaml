@@ -681,7 +681,7 @@
     Tile entities (less often referred to as Block Entities) are blocks that
     have NBT-data attached to them, for example all blocks with inventories.
 
-    More information on the [block entity wiki page](https://minecraft.fandom.com/wiki/Block_entity)
+    More information on the [block entity wiki page](https://minecraft.wiki/w/Block_entity)
 
 - term: Tile Tick Priority
   aka:
