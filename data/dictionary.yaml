@@ -732,6 +732,12 @@
     to @[Hexadecimal], hex to octal, pulse length to binary, block event delay
     to overloaded comparator, etc.
 
+- term: Unloader
+  tags: 
+    - StorageTech Contraption
+  description: >-
+    A contraption that removes item contents from a shulkerbox. 
+
 - term: Unstackable filter
   tags:
     - StorageTech Contraption
